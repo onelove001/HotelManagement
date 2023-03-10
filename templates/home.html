@@ -33,8 +33,15 @@
                 <p>
                     <strong>Register as a student to enjoy the facilities</strong>
                 </p>
+                <p>
+                    <strong>No student is left out</strong>
+                </p>
                 {% if request.user.is_authenticated %}
                 <a href="{% url 'app:student-register' %}" class="btn btn-outline-white btn-lg">Regiser Here Now
+                    <i class="fas fa-graduation-cap ml-2"></i>
+                </a>
+                {% else %}
+                <a href="{% url 'register-user' %}" class="btn btn-outline-white btn-lg">Sign Up Here Now
                     <i class="fas fa-graduation-cap ml-2"></i>
                 </a>
                 {% endif %}
@@ -64,8 +71,15 @@
             <p>
                 <strong>Register as a student to get started</strong>
             </p>
+            <p>
+                <strong>No student is left out</strong>
+            </p>
             {% if request.user.is_authenticated%}
             <a href="{% url 'app:student-register' %}" class="btn btn-outline-white btn-lg">Register Here Now
+                <i class="fas fa-graduation-cap ml-2"></i>
+            </a>
+            {% else %}
+            <a href="{% url 'register-user' %}" class="btn btn-outline-white btn-lg">Sign Up Here Now
                 <i class="fas fa-graduation-cap ml-2"></i>
             </a>
             {% endif %}

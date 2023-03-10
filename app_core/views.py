@@ -7,7 +7,7 @@ from .models import *
 
 
 def welcome_page(request):
-    rooms = Rooms.objects.all()[:4]
+    rooms = Rooms.objects.all()
     for room in rooms:
         print(room.image1.url)
     context = {"rooms":rooms}

@@ -233,14 +233,15 @@
 <!--Main layout-->
 
 {% else %}
-<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
 <div class="container card mb-5">
     <div class="mt-5">
         <h3 class="text-danger">You are not authorized to view this page until you register as a student of the school.</h3>
         <a href="{% url 'app:student-register'%}">Register Here</a>
     </div>
 </div>
+
 {% endif %}
 
-<br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 {% endblock content %}
