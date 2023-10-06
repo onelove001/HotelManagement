@@ -1,0 +1,91 @@
+{% extends 'admin_templates/base.html' %}
+
+{% block title %} CreateManager  {% endblock %}
+
+{% block content %} 
+
+{% if request.user.is_authenticated %}
+<br>
+<!--Main layout-->
+<main class="mt-5 pt-4">
+    <div class="container wow fadeIn">
+
+        <!-- Heading -->
+        <br><br>
+        <h2 class="my-5 h2 text-center text-primary">Create Wing Manager</h2>
+
+        <!--Grid row-->
+        <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-11 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+            <!--Card content-->
+            <form class="card-body" action="{% url 'app:create-wing-manager' %}" method="POST"> {% csrf_token %}
+                <!--firstname-->
+                <div class="md-form mb-5">
+                    <input type="text" id="firstname" class="form-control" name="firstname" placeholder="Michelle" required>
+                    <label for="firstname" class="">First Name</label>
+                </div>
+
+                <!--firstname-->
+                <div class="md-form mb-5">
+                    <input type="text" id="lastname" class="form-control" name="lastname" placeholder="Obama" required>
+                    <label for="lastname" class="">Last Name</label>
+                </div>
+
+                <!--email-->
+                <div class="md-form mb-5">
+                    <input type="text" id="email" class="form-control" name="email" placeholder="obama@example.com" required>
+                    <label for="email" class="">Email</label>
+                </div>
+
+                <!--matric-->
+                <div class="md-form mb-5">
+                    <input type="text" id="phone_no" class="form-control" name="phone_no" placeholder="73-323-234" required>
+                    <label for="phone_no" class="">Phone Number</label>
+                </div>
+
+                <!--address-->
+                <div class="md-form mb-5">
+                    <input type="text" id="address" class="form-control" name="address" placeholder="32 Avenue, lincoln boulivered" required>
+                    <label for="address" class="">Address</label>
+                </div>
+
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Create Manager</button>
+                {% if messages %}
+                    <hr class="mb-1">
+                    {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                    <span class="btn btn-success btn-lg btn-block" type="button">{{message}}</span>
+                    {% else %}
+                    <span class="btn btn-danger btn-lg btn-block" type="button">{{message}}</span>
+                    {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </form>
+
+            </div>
+            <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+        {% else %}
+        <br><br>
+        <div class="card mt-5">
+            <div class="card-body">
+                <h5 class="text-danger">You don't have access to this page 😹😹😹😹😹😹😹😹😹😹</h5>
+            </div>
+        </div>
+        {% endif %}
+        </div>
+        <!--Grid row-->
+    </div>
+</main>
+<!--Main layout-->
+<br><br><br><br><br>
+{% endblock %}

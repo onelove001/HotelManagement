@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block title %} Suites {% endblock title %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+
+<!--Carousel Wrapper-->
+<div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
+
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+
+    <!--First slide-->
+    <div class="carousel-item active">
+        <div class="view" style="background-image: url('../../../static/img/background1.png'); background-repeat: no-repeat; background-size: cover;">
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
+
+            <!-- Content -->
+            <div class="text-center white-text mx-5 wow fadeIn">
+                <h1 class="mb-4">
+                    <strong>Hotel Booking System</strong>
+                </h1>
+
+                <p>
+                    <strong>Best & Deluxe accomodations for clients </strong>
+                </p>
+
+                <p class="mb-4 d-none d-md-block">
+                    <strong>All suites recommended are clean and conducive for clients.</strong>
+                </p>
+            </div>
+            <!-- Content -->
+
+        </div>
+        <!-- Mask & flexbox options-->
+
+        </div>
+    </div>
+    <!--/First slide-->
+
+    </div>
+    <!--/.Slides-->
+
+</div>
+<!--/.Carousel Wrapper-->
+
+<!--Main layout-->
+<main>
+    <div class="container">
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+
+        <!-- Navbar brand -->
+        <span class="navbar-brand">Facilities:</span>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="">Recommended</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'app:room_service' %}">RoomService</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'app:room-transfer' %}">SuiteTransfer</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'app:complaints' %}">LiveChat</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'app:payment' %}">Deposit</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'app:request-dashboard' %}">My Dashboard</a>
+            </li>
+        </ul>
+        <!-- Links -->
+
+        <form class="form-inline">
+            <div class="md-form my-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Wallet: ₦{{wallet.account_bal}}.00" aria-label="Search" disabled>
+            </div>
+        </form>
+        </div>
+        <!-- Collapsible content -->
+
+    </nav>
+    <!--/.Navbar-->
+
+    <!--Section: Products v.3-->
+    <section class="text-center mb-4">
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+        {% for suite in suites %}
+
+        <!--Grid column-->
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+            <!--Card image-->
+            <div class="view overlay">
+                <img src="{{suite.image1}}" class="card-img-top" alt="" style="height:200px;">
+                <a href="{% url 'app:suite-details' suite.id %}">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+            <!--Card image-->
+
+            <!--Card content-->
+            <div class="card-body text-center">
+                <!--Category & Title-->
+                <a href="{% url 'app:suite-details' suite.id %}" class="grey-text">
+                <h5>{{suite.package.name}}</h5>
+                </a>
+                <h5>
+                <strong>
+                    <a href="{% url 'app:suite-details' suite.id %}" class="dark-grey-text">{{suite.wing.wing_name}} Wing
+                    <span class="badge badge-pill danger-color">{{suite.room_tag}}</span>
+                    </a>
+                </strong>
+                </h5>
+
+                <h4 class="font-weight-bold blue-text">
+                    <strong>₦{{suite.package.charge}}</strong>
+                </h4>
+            </div>
+            <!--Card content-->
+
+            </div>
+            <!--Card-->
+        </div>
+        <!--Grid column-->
+
+        {% endfor %}
+        </div>
+        <!--Grid row-->
+
+    </section>
+    <!--Section: Products v.3-->
+
+
+
+    </div>
+</main>
+<!--Main layout-->
+
+{% else %}
+
+<br><br><br><br><br><br><br><br><br><br>
+<div class="container card mb-5">
+    <div class="mt-5">
+        <h3 class="text-danger">You have to register first to view this page.</h3>
+        <a href="{% url 'register-user'}">Register Here</a>
+    </div>
+</div>
+
+{% endif %}
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock content %}

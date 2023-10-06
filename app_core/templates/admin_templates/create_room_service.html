@@ -1,0 +1,90 @@
+{% extends 'admin_templates/base.html' %}
+
+{% block title %} CreateRoomService  {% endblock %}
+
+{% block content %} 
+
+{% if request.user.is_authenticated %}
+<br>
+<!--Main layout-->
+<main class="mt-5 pt-4">
+    <div class="container wow fadeIn">
+
+        <!-- Heading -->
+        <br><br>
+        <h2 class="my-5 h2 text-center text-primary">Create Room Service</h2>
+
+        <!--Grid row-->
+        <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-11 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+            <!--Card content-->
+            <form class="card-body" action="{% url 'app:create-room-service' %}" method="POST"> {% csrf_token %}
+
+                <!--first name-->
+                <div class="md-form mb-5">
+                    <input type="text" id="firstname" class="form-control" name="firstname" placeholder="" required>
+                    <label for="firstname" class="">First Name</label>
+                </div>
+
+                <!--lastname -->
+                <div class="md-form mb-5">
+                    <input type="text" id="lastname" class="form-control" name="lastname" placeholder="" required>
+                    <label for="lastname" class="">Last Name</label>
+                </div>
+
+                <!--lastname -->
+                <div class="md-form mb-5">
+                    <input type="text" id="cellphone" class="form-control" name="cellphone" placeholder="" required>
+                    <label for="cellphone" class="">Cell Phone</label>
+                </div>
+                
+                <!--wing manager-->
+                <div class="md-form mb-5">
+                    <select id="wing_name" class="form-control" name="wing_name" required>
+                        <option>Wing</option>
+                        {% for wing in wings  %}
+                            <option value="{{wing.id}}">Wing: {{wing.wing_name}} | Manager: {{wing.wing_manager.first_name}} - {{wing.wing_manager.last_name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Create Wing</button>
+                {% if messages %}
+                    <hr class="mb-1">
+                    {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                    <span class="btn btn-success btn-lg btn-block" type="button">{{message}}</span>
+                    {% else %}
+                    <span class="btn btn-danger btn-lg btn-block" type="button">{{message}}</span>
+                    {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </form>
+
+            </div>
+            <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+        {% else %}
+        <br><br>
+        <div class="card mt-5">
+            <div class="card-body">
+                <h5 class="text-danger">You don't have access to this page 😹😹😹😹😹😹😹😹😹😹</h5>
+            </div>
+        </div>
+        {% endif %}
+        </div>
+        <!--Grid row-->
+    </div>
+</main>
+<!--Main layout-->
+<br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

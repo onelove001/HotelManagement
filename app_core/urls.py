@@ -1,40 +1,40 @@
 from django.contrib import admin
 from django.urls import path
-from .student_views import *
+from .user_views import *
 from app_core.admin_views import *
 
 
 app_name = "app"
 
-
 urlpatterns = [
 
-    # Students Urls
+    # Users Urls ====================
 
-    path("student_dashboard", student_dashboard, name = "student-dashboard"),
-    path("student_register", student_register, name = "student-register"),
-    path("room_details/<str:room_id>", room_details, name = "room-details"),
+    path("suites", view_suites, name = "view-suites"),
+    path("suite_details/<str:suite_id>", suite_details, name = "suite-details"),
     path("payment", payment, name = "payment"),
-    path("accomodation_request", accomodation_request, name = "accomodation-request"),
+    path("suite_request", suite_request, name = "suite-request"),
     path("room_transfer", room_transfer, name = "room-transfer"),
-    path("guest_stay", guest_stay, name = "guest-stay"),
     path("complain", complaints, name = "complaints"),
-
-    # Admin Urls
-
-    path("create_block", create_block, name = "create-block"),
-    path("create_manager", create_manager, name = "create-manager"),
-    path("create_room", create_room, name = "create-room"),
-    path("manage_request", manage_request, name = "manage-request"),
-    path("manage_transfer", manage_transfer, name = "manage-transfer"),
-    path("manage_guest", manage_guest, name = "manage-guest"),
-    path("manage_complaints", manage_complaints, name = "manage-complaints"),
-    path("manage_rule", manage_rule, name = "manage-rule"),
-    path("approve_or_disapprove/<str:ac_id>", approve_or_disapprove, name = "approve_or_disapprove"),
-    path("complain_status/<str:complain_id>", complain_status, name = "complain_status"),
-    path("guest_status/<str:guest_id>", guest_status, name = "guest_status"),
-    path("transfer_status/<str:transfer_id>", transfer_status, name = "transfer_status"),
+    path("room_service", room_service, name = "room_service"),
     path("request_dashboard", request_dashboard, name = "request-dashboard"),
+
+    # Admin Urls =======================
+
+    path("create_package", create_package, name = "create-package"),
+    path("create_wing_manager", create_wing_manager, name = "create-wing-manager"),
+    path("create_wing", create_wing, name = "create-wing"),
+    path("create_suite", create_suite, name = "create-suite"),
+    path("create_room_service", create_room_service, name = "create-room-service"),
     
+    path("manage_request", manage_request, name = "manage-request"),
+    path("manage_suite_change", manage_suite_change, name = "manage-suite-change"),
+    path("manage_help_request", manage_help_request, name = "manage-help-request"),
+    path("manage_rule", manage_rule, name = "manage-rule"),
+    path("manage_room_service", manage_room_service, name = "manage-room-service"),
+    path("approve_or_disapprove/<str:ac_id>", approve_or_disapprove, name = "approve_or_disapprove"),
+    path("help_request_status/<str:complain_id>", help_request_status, name = "help-request-status"),
+    path("suite_change_status/<str:transfer_id>", suite_change_status, name = "suite-change-status"),
+    path("room_service_request_status/<str:rors_id>", room_service_request_status, name = "room-service-request-status"),
 
 ]

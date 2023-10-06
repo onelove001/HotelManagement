@@ -16,7 +16,9 @@ urlpatterns = [
     path("login_user", login_user, name="login-user"),
     path("logout_user", logout_page, name="logout-user"),
     path("register", register_page, name="register-user"),
-    path("rooms", view_rooms, name="view-rooms"),
+    path("contact", contact, name="contact"),
+    path("faq", faqq, name="faq"),
+    path("about", about, name="about"),
     path("app/", include("app_core.urls", namespace="app")),
 
 ]

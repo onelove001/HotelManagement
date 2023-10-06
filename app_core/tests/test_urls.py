@@ -1,24 +1,24 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
 from app_core.views import *
-from app_core.student_views import *
+from app_core.user_views import *
 
 
 
 class TestUrls(SimpleTestCase):
 
-    def test_student_dashboard_is_resolved(self):
+    def test_user_dashboard_is_resolved(self):
 
-        url = reverse("app:student-dashboard")
+        url = reverse("app:request-dashboard")
         path = (resolve(url))
-        self.assertEquals(path.func, student_dashboard)
+        self.assertEquals(path.func, request_dashboard)
 
 
-    def test_guest_stay_is_resolved(self):
+    def test_room_service_is_resolved(self):
 
-        url = reverse("app:guest-stay")
+        url = reverse("app:room_service")
         path = (resolve(url))
-        self.assertEquals(path.func, guest_stay)
+        self.assertEquals(path.func, room_service)
 
 
     def test_payment_is_resolved(self):
@@ -54,3 +54,17 @@ class TestUrls(SimpleTestCase):
         url = reverse("welcome-page")
         path = (resolve(url))
         self.assertEquals(path.func, welcome_page)
+
+
+    def test_about_is_resolved(self):
+        
+        url = reverse("about")
+        path = (resolve(url))
+        self.assertEquals(path.func, about)
+
+
+    def test_contact_is_resolved(self):
+        
+        url = reverse("contact")
+        path = (resolve(url))
+        self.assertEquals(path.func, contact)

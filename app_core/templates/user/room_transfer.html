@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block title %} Room Transfer {% endblock %}
+
+{% block content %}
+<br>
+<!--Main layout-->
+<main class="mt-5 pt-4">
+    <div class="container wow fadeIn">
+        {% if request.user.is_authenticated %}
+        <br><br><br>
+        <h2 class="my-5 h2 text-center text-primary">Suite Transfer Request</h2>
+        <hr>
+        <h2 class="my-5 h2 text-center blue-text"></h2>
+
+        <!--Grid row-->
+        <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-11 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+            <!--Card content-->
+            <form class="card-body" action="{% url 'app:room-transfer' %}" method="POST"> {% csrf_token %}
+
+                <!--Grid row-->
+                <div class="row">
+
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+
+                    <!--firstName-->
+                    <div class="md-form ">
+                    <input type="text" id="first_name" class="form-control" name="first_name" value="{{user.first_name}}">
+                    <label for="first_name" class="">First Name</label>
+                    </div>
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+
+                    <!--lastName-->
+                    <div class="md-form">
+                    <input type="text" id="last_name" class="form-control" name="last_name" value="{{user.last_name}}">
+                    <label for="last_name" class="">Last Name</label>
+                    </div>
+
+                </div>
+                <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+                <!--Username-->
+                <div class="md-form input-group pl-0 mb-5">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input type="text" class="form-control py-0" value="{{request.user.username}}" aria-describedby="basic-addon1" disabled>
+                </div>
+
+                <!--address-->
+                <div class="md-form mb-4">
+                    <textarea type="text" id="reason" class="form-control" name="reason" required></textarea>
+                    <label for="reason" class="">Reason</label>
+                </div>
+
+                <div class="md-form mb-4">
+                    <select id="room_from" class="form-control" name="room_from" required>
+                        <option>Suite From</option>
+                        {% for room in rooms %}
+                            <option value="{{room.id}}">Suite {{room.room_number}} | ₦{{room.package.charge}} | {{room.wing.wing_name}} Wing</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="md-form mb-4">
+                    <select id="room_to" class="form-control" name="room_to" required>
+                        <option>Suite To</option>
+                        {% for room in rooms_ %}
+                            <option value="{{room.id}}">Suite {{room.room_number}} | ₦{{room.package.charge}} | {{room.wing.wing_name}} Wing</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <hr class="mb-4">
+                
+                {% if is_roomed %}
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Request for transfer</button>
+                {% else %}
+                    <button class="btn btn-danger btn-lg btn-block" type="button">Your can't place this request, You do not have a room at the moment</button>
+                {% endif %}
+
+                {% if messages %}
+                <hr class="mb-1">
+                  {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                    <span class="btn btn-success btn-lg btn-block" type="button">{{message}}</span>
+                    {% else %}
+                    <span class="btn btn-danger btn-lg btn-block" type="button">{{message}}</span>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+            </form>
+
+            </div>
+            <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+        {% endif %}
+    </div>
+</main>
+<!--Main layout-->
+<br><br><br><br><br>
+{% endblock content %}

@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block title %} Requests {% endblock %}
+
+{% block content %}
+
+<br><br>
+<!--Main layout-->
+<main>
+    <div class="container">
+        <h2 class="my-5 h2 text-center text-danger">Suite Request</h2>
+        <div class="table-responsive">
+            <table class="table table-stripped table-hovered table-bordered">
+                <thead>
+                    <tr>
+                        <td>Request ID</td>
+                        <td>User ID</td>
+                        <td>Full Name</td>
+                        <td>Username</td>
+                        <td>Suite Number</td>
+                        <td>Suite Package</td>
+                        <td>Suite Wing</td>
+                        <td>Suite Price</td>
+                        <td>Suite Manager</td>
+                        <td>Nights</td>
+                        <td>Status</td>
+                        <td>Date</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for suite in suite_requests %}
+                    <tr>
+                        <td>{{suite.id}}</td>
+                        <td>{{suite.user.id}}</td>
+                        <td>{{suite.user.first_name}}</td>
+                        <td>{{suite.user.username}}</td>
+                        <td>{{suite.room.room_number}}</td>
+                        <td>{{suite.room.package.name}}</td>
+                        <td>{{suite.room.wing.wing_name}}</td>
+                        <td>{{suite.room.package.charge}}</td>
+                        <td>{{suite.room.wing.wing_manager.first_name}}</td>
+                        <td>{{suite.nights}}</td>
+                        {% if suite.approved %}
+                        <td class="text-success">Approved</td>
+                        {% else %}
+                        <td class="text-warning">Pending</td>
+                        {% endif %}
+                        <td>{{suite.created_at}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="my-5 h2 text-center text-danger">Suite Transfer Request</h2>
+        <div class="table-responsive">
+            <table class="table table-stripped table-hovered table-bordered">
+                <thead>
+                    <tr>
+                        <td>Transfer ID</td>
+                        <td>User ID</td>
+                        <td>Fullname</td>
+                        <td>Username</td>
+                        <td>Suite From</td>
+                        <td>Suite To</td>
+                        <td>Reason</td>
+                        <td>Status</td>
+                        <td>Date Created</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for room in suite_change %}
+                    <tr>
+                        <td>{{room.id}}</td>
+                        <td>{{room.user.id}}</td>
+                        <td>{{room.user.first_name}}</td>
+                        <td>{{room.user.username}}</td>
+                        <td>{{room.room_from.room_number}}</td>
+                        <td>{{room.room_to.room_number}}</td>
+                        <td>{{room.reason}}</td>
+                        {% if room.approved %}
+                        <td class="text-success">Approved</td>
+                        {% else %}
+                        <td class="text-warning">Pending</td>
+                        {% endif %}
+                        <td>{{room.created_at}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="my-5 h2 text-center text-danger">Room Service Requests</h2>
+        <div class="table-responsive">
+            <table class="table table-stripped table-hovered table-bordered">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>User ID</td>
+                        <td>FullName</td>
+                        <td>Username</td>
+                        <td>Suite Number</td>
+                        <td>Subject</td>
+                        <td>Status</td>
+                        <td>Date Created</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for room_s in room_service %}
+                    <tr>
+                        <td>{{room_s.id}}</td>
+                        <td>{{room_s.user.id}}</td>
+                        <td>{{room_s.user.first_name}}</td>
+                        <td>{{room_s.user.username}}</td>
+                        <td>{{room_s.room.room_number}}</td>
+                        <td>{{room_s.subject}}</td>
+                        {% if room_s.status %}
+                        <td class="text-success">Completed</td>
+                        {% else %}
+                        <td class="text-warning">Pending</td>
+                        {% endif %}
+                        <td>{{room_s.created_at}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="my-5 h2 text-center text-danger">Help Requests</h2>
+        <div class="table-responsive">
+            <table class="table table-stripped table-hovered table-bordered">
+                <thead>
+                    <tr>
+                        <td>Complaint ID</td>
+                        <td>User ID</td>
+                        <td>Full Name</td>
+                        <td>Username</td>
+                        <td>Subject</td>
+                        <td>Status</td>
+                        <td>Date Created</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for complain in help_requests %}
+                    <tr>
+                        <td>{{complain.id}}</td>
+                        <td>{{complain.user.id}}</td>
+                        <td>{{complain.user.first_name}}</td>
+                        <td>{{complain.user.username}}</td>
+                        <td>{{complain.subject}}</td>
+                        {% if complain.status %}
+                        <td class="text-success">Treated</td>
+                        {% else %}
+                        <td class="text-warning">Pending</td>
+                        {% endif %}
+                        <td>{{complain.created_at}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</main>
+
+<br><br><br><br><br><br>
+{% endblock %}

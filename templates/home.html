@@ -19,30 +19,26 @@
 
     <!--First slide-->
     <div class="carousel-item active">
-        <div class="view" style="background-image: url('../static/img/image8.png'); background-repeat: no-repeat; background-size: cover;">
-
+        <div class="view" style="background-image: url('../static/img/background3.png'); background-repeat: no-repeat; background-size: cover;">
         <!-- Mask & flexbox options-->
         <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
 
             <!-- Content -->
             <div class="text-center white-text mx-5 wow fadeIn">
                 <h1 class="mb-4">
-                    <strong>Hostel Share Management</strong>
+                    <strong>Hotel Management System</strong>
                 </h1>
 
                 <p>
-                    <strong>Register as a student to enjoy the facilities</strong>
-                </p>
-                <p>
-                    <strong>No student is left out</strong>
+                    <strong>VIEW OUR SUITES</strong>
                 </p>
                 {% if request.user.is_authenticated %}
-                <a href="{% url 'app:student-register' %}" class="btn btn-outline-white btn-lg">Regiser Here Now
-                    <i class="fas fa-graduation-cap ml-2"></i>
+                <a href="{% url 'app:view-suites' %}" class="btn btn-outline-white btn-lg">Book Now!
+                    <!-- <i class="fas fa-graduation-cap ml-2"></i> -->
                 </a>
                 {% else %}
                 <a href="{% url 'register-user' %}" class="btn btn-outline-white btn-lg">Sign Up Here Now
-                    <i class="fas fa-graduation-cap ml-2"></i>
+                    <!-- <i class="fas fa-graduation-cap ml-2"></i> -->
                 </a>
                 {% endif %}
             </div>
@@ -57,7 +53,7 @@
 
     <!--Second slide-->
     <div class="carousel-item">
-        <div class="view" style="background-image: url('../static/img/image7.png'); background-repeat: no-repeat; background-size: cover;">
+        <div class="view" style="background-image: url('../static/img/background7.png'); background-repeat: no-repeat; background-size: cover;">
 
         <!-- Mask & flexbox options-->
         <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
@@ -65,22 +61,19 @@
             <!-- Content -->
             <div class="text-center white-text mx-5 wow fadeIn">
             <h1 class="mb-4">
-                <strong>Accomodation Management System</strong>
+                <strong>Our Booking System</strong>
             </h1>
 
             <p>
-                <strong>Register as a student to get started</strong>
-            </p>
-            <p>
-                <strong>No student is left out</strong>
+                <strong>BOOK WITH US TODAY</strong>
             </p>
             {% if request.user.is_authenticated%}
-            <a href="{% url 'app:student-register' %}" class="btn btn-outline-white btn-lg">Register Here Now
-                <i class="fas fa-graduation-cap ml-2"></i>
+            <a href="{% url 'app:view-suites' %}" class="btn btn-outline-white btn-lg">Click Me
+                <!-- <i class="fas fa-graduation-cap ml-2"></i> -->
             </a>
             {% else %}
             <a href="{% url 'register-user' %}" class="btn btn-outline-white btn-lg">Sign Up Here Now
-                <i class="fas fa-graduation-cap ml-2"></i>
+                <!-- <i class="fas fa-graduation-cap ml-2"></i> -->
             </a>
             {% endif %}
             </div>
@@ -113,42 +106,14 @@
 
 <!--Main layout-->
 <main>
-    <div class="container">
-
-    <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
-
-        <!-- Navbar brand -->
-        <span class="navbar-brand">Facilities:</span>
-
-        <!-- Collapse button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Collapsible content -->
-        <div class="collapse navbar-collapse" id="basicExampleNav">
-
-        <!-- Links -->
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="">Rooms</a>
-            </li>
-        </ul>
-        <!-- Links -->
-        </div>
-        <!-- Collapsible content -->
-
-    </nav>
-    <!--/.Navbar-->
+    <div class="container"><br>
 
     <!--Section: Products v.3-->
     <section class="text-center mb-4">
 
         <!--Grid row-->
         <div class="row wow fadeIn">
-        {% for room in rooms %}
+        {% for suite in suites %}
 
         <!--Grid column-->
         <div class="col-lg-3 col-md-6 mb-4">
@@ -158,7 +123,7 @@
 
             <!--Card image-->
             <div class="view overlay">
-                <img src="{{room.image1}}" class="card-img-top" alt="" style="height:200px;">
+                <img src="{{suite.image1}}" class="card-img-top" alt="" style="height:200px;">
                 <a>
                     <div class="mask rgba-white-slight"></div>
                 </a>
@@ -169,18 +134,18 @@
             <div class="card-body text-center">
                 <!--Category & Title-->
                 <a href="" class="grey-text">
-                <h5>{{room.room_name}}</h5>
+                <h5>{{suite.package.name}}</h5>
                 </a>
                 <h5>
                 <strong>
-                    <a href="" class="dark-grey-text">Block {{room.block.block_name}}
-                    <span class="badge badge-pill danger-color">{{room.room_tag}}</span>
+                    <a href="" class="dark-grey-text"> {{suite.wing.wing_name}} Wing
+                    <span class="badge badge-pill danger-color">{{suite.room_tag}}</span>
                     </a>
                 </strong>
                 </h5>
 
                 <h4 class="font-weight-bold blue-text">
-                    <strong>₦{{room.charge}}</strong>
+                    <strong>₦{{suite.package.charge}}</strong>
                 </h4>
             </div>
             <!--Card content-->

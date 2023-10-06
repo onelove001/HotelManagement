@@ -1,0 +1,53 @@
+{% extends 'admin_templates/base.html' %}
+
+{% block title %} ManageSuiteChange {% endblock %}
+
+{% block content %}
+
+<br><br><br><br> 
+<!--Main layout-->
+<main>
+    <div class="container">
+    {% include 'admin_templates/admin_nav.html' %}
+    <h2 class="my-5 h2 text-center">Manage Suite Requests</h2>
+        <div class="table">
+            <table class="table-stripped table-hovered table-bordered">
+                <thead>
+                    <tr>
+                        <td>Change ID</td>
+                        <td>User ID</td>
+                        <td>User Name</td>
+                        <td>Username</td>
+                        <td>Change From</td>
+                        <td>Change To</td>
+                        <td>Reason For Change</td>
+                        <td>Action</td>
+                        <td>Date Created</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transfer in suit_changes %}
+                    <tr>
+                        <td>{{transfer.id}}</td>
+                        <td>{{transfer.user.id}}</td>
+                        <td>{{transfer.user.first_name}}</td>
+                        <td>{{transfer.user.username}}</td>
+                        <td>Suite {{transfer.room_from.room_number}} @ #{{transfer.room_from.package.charge}}</td>
+                        <td>Suite {{transfer.room_to.room_number}} @ #{{transfer.room_to.package.charge}}</td>
+                        <td>{{transfer.reason}}</td>
+                        {% if transfer.approved %}
+                        <td><a href="{% url 'app:suite-change-status' transfer.id %}" type="button" class="btn btn-danger">Disapprove</a></td>
+                        {% else %}
+                        <td><a href="{% url 'app:suite-change-status' transfer.id %}" type="button" class="btn btn-success">Approve</a></td>
+                        {% endif %}
+                        <td>{{transfer.created_at}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

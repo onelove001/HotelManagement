@@ -4,7 +4,7 @@
 
       <!-- Brand -->
       <a class="navbar-brand waves-effect" href="{% url 'admin-welcome-page' %}">
-        <strong class="text-primary">AMS</strong>
+        <strong class="text-primary">HMS</strong>
       </a>
 
       <!-- Collapse -->
@@ -24,13 +24,19 @@
           </li>
           {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link waves-effect" href="{% url 'app:create-block' %}"><b>Create Block</b></a>
+            <a class="nav-link waves-effect" href="{% url 'app:create-package' %}"><b>Create Package</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link waves-effect" href="{% url 'app:create-manager' %}"><b>Create Manager</b></a>
+            <a class="nav-link waves-effect" href="{% url 'app:create-wing-manager' %}"><b>Create Manager</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link waves-effect" href="{% url 'app:create-room' %}"><b>Create Room</b></a>
+            <a class="nav-link waves-effect" href="{% url 'app:create-wing' %}"><b>Create Wing</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'app:create-suite' %}"><b>Create Suite</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'app:create-room-service' %}"><b>Create RoomService</b></a>
           </li>
           {% endif %}
         </ul>

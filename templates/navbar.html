@@ -4,7 +4,7 @@
 
       <!-- Brand -->
       <a class="navbar-brand waves-effect" href="{% url 'welcome-page' %}">
-        <strong class="text-primary">AMS</strong>
+        <strong class="text-primary h1">HMS</strong>
       </a>
 
       <!-- Collapse -->
@@ -24,16 +24,21 @@
           </li>
           {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link waves-effect" href="{% url 'view-rooms' %}"><b>Rooms</b></a>
+            <a class="nav-link waves-effect" href="{% url 'app:view-suites' %}"><b>Suites Dashboard</b></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="{% url 'app:student-register' %}"><b>Student Page</b></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="{% url 'app:student-dashboard' %}"><b>Student Dashboard</b></a>
-          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link waves-effect" href="#"><b>Dashboard</b></a>
+          </li> -->
           {% endif %}
-
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'about' %}"><b>About</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'contact' %}"><b>Contact</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'faq' %}"><b>FAQ</b></a>
+          </li>
         </ul>
 
         <!-- Right -->
