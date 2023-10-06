@@ -1,8 +1,12 @@
 .bg-custom {
-    background-color: #91a0ba;
+    background-color: #ffb700;
 }
 
 
 table td{
     font-weight: bold;
+}
+
+.text-custom {
+    color: rgb(255, 0, 25);
 }
