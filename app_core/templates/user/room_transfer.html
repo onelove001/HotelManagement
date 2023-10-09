@@ -73,7 +73,7 @@
                     <select id="room_from" class="form-control" name="room_from" required>
                         <option>Suite From</option>
                         {% for room in rooms %}
-                            <option value="{{room.id}}">Suite {{room.room_number}} | ₦{{room.package.charge}} | {{room.wing.wing_name}} Wing</option>
+                            <option value="{{room.id}}">Suite {{room.room_number}} | ${{room.package.charge}} | {{room.wing.wing_name}} Wing</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -82,7 +82,7 @@
                     <select id="room_to" class="form-control" name="room_to" required>
                         <option>Suite To</option>
                         {% for room in rooms_ %}
-                            <option value="{{room.id}}">Suite {{room.room_number}} | ₦{{room.package.charge}} | {{room.wing.wing_name}} Wing</option>
+                            <option value="{{room.id}}">Suite {{room.room_number}} | ${{room.package.charge}} | {{room.wing.wing_name}} Wing</option>
                         {% endfor %}
                     </select>
                 </div>
